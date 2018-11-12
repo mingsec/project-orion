@@ -1,0 +1,45 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+    <h3>
+        <b>条目:</b>
+    </h3>
+    <small>
+        科目:
+        <a href="{% url 'learning_logs:entries' topic.name %}">{{ topic }}</a> - 
+        {{ entry }}
+        &nbsp&nbsp&nbsp&nbsp&nbsp
+        <a href="{% url 'learning_logs:new_blog' topic.name entry.name %}">增加新条目</a>
+    </small>
+{% endblock header %}
+
+{% block content %}
+    {% for blog in blogs %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>
+                    <b>{{ blog.title|linebreaks }}</b>              
+                </h4>
+            </div>
+
+            <div class="panel-body">
+                {{ blog.text|linebreaks }}
+            </div>
+
+            <div class="panel-footer">
+                <small>
+                    创建人：{{ blog.owner }}
+                    &nbsp&nbsp&nbsp&nbsp&nbsp
+                    创建时间：{{ blog.date_added|date:'Y-m-d H:i' }}
+                    &nbsp&nbsp&nbsp&nbsp&nbsp                    
+                    最后编辑：{{ blog.date_modify|date:'Y-m-d H:i' }}
+                    &nbsp&nbsp&nbsp&nbsp&nbsp  
+                    <a href="{% url 'learning_logs:edit_blog' topic.name entry.name blog.name %}">编辑条目</a>
+                </small>
+            </div>
+        </div><!-- panel -->
+    {% empty %}
+        <b>该主题下尚无任何条目。</b>
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,24 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+    <h3>
+        <b>增加一个新的学习内容:</b>
+    </h3>
+    <small>
+        所属科目:
+        <a href="{% url 'learning_logs:entries' topic.name %}">{{ topic }}</a> -
+        <a href="{% url 'learning_logs:blogs' topic.name entry.name %}">{{ entry }}</a>
+    </small>
+{% endblock header %}
+
+{% block content %}
+    <form action="{% url 'learning_logs:new_blog' topic.name entry.name %}" method='post' class="form">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        
+        {% buttons %}
+            <button name="submit" class="btn btn-primary">增加</button>
+        {% endbuttons %}
+    </form>
+{% endblock content %}

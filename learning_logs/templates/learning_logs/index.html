@@ -1,0 +1,25 @@
+{% extends "learning_logs/base.html" %}
+
+{% block header%}
+    <h2>
+        <b>学习日志，追踪您的学习</b>
+    </h2>
+{% endblock header%}
+
+{% block content %}
+    <div >
+        <ul>
+            <li>
+                <H4>无论您何时开始学习，记得用学习日志来总结您所学到的内容。</H4>
+            </li>
+            <li>
+                <H4>
+                    <a href="{% url 'users:register' %}">
+                        <b>注册一个账号</b>
+                    </a>
+                    用于管理您自己的学习日志, 同时列出所有您参与的主题。
+                </H4>           
+            </li>       
+        </ul>    
+    </div>    
+{% endblock content %}

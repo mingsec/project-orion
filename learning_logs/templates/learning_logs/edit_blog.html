@@ -1,0 +1,29 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+    <h4>科目:
+        <a href="{% url 'learning_logs:entries' topic.name %}">
+           {{ topic }}
+        </a> -
+
+        <a href="{% url 'learning_logs:blogs' topic.name entry.name %}">
+           {{ entry }}
+        </a>
+    </h4>
+
+    <h2>
+        <b>编辑条目:</b>
+    </h2>
+{% endblock header %}
+
+{% block content %}
+    <form action="{% url 'learning_logs:edit_blog' topic.name entry.name blog.name %}" method='post'>
+        {% csrf_token %}
+        {% bootstrap_form form %}
+
+        {% buttons %}
+            <button name="submit" class="btn btn-primary">保存</button>
+        {% endbuttons %}
+    </form>
+{% endblock content %}

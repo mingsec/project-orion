@@ -1,0 +1,32 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+    <h3>
+        <b>科目:</b>
+    </h3>
+    <small>所属主题： {{ topic }}</small>
+{% endblock header %}
+
+{% block content %}
+    <ul>
+        {% for entry in entries %}
+            <li>
+                <h4>
+                    <a href="{% url 'learning_logs:blogs' topic.name entry.name %}">
+                        <b>{{ entry.text|linebreaks }}</b>
+                    </a>
+                <h4>
+                 <small>创建时间：{{ entry.date_added|date:'Y-m-d H:i' }}</small> 
+            </li>
+        {% empty %}
+            <li>
+                <b>该话题下尚无任何科目。</b>
+            </li>
+       {% endfor %}
+    </ul>
+
+    <a href="{% url 'learning_logs:new_entry' topic.name %}">
+        <small>增加新科目</small>
+    </a>
+{% endblock content %}

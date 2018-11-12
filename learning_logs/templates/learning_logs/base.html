@@ -1,0 +1,81 @@
+{% load bootstrap3 %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>猎户座左旋臂</title>
+
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+    </head>
+
+    <body>   
+        <!-- Static navbar -->
+        <nav class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button"          class="navbar-toggle collapsed"
+                            data-toggle="collapse" data-target="#navbar"
+                            aria-expanded="false"  aria-controls="#navbar">                    
+                    </button>
+
+                    <a class="navbar-brand" href="{% url 'homepage:homepage' %}">
+                        <b>Project Orion</b>
+                    </a>
+                </div>
+
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="{% url 'learning_logs:index' %}">学习日志</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'homepage:homepage' %}">财务指标库</a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if user.is_authenticated %}
+                            <li>
+                                <a>{{ user.username }}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'users:logout' %}">注销</a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="{% url 'users:register' %}">注册</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'users:login' %}">登录</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>                      
+            </div>            
+        </nav>
+
+        <div class="container">
+            <h5><b>
+                <a href="{% url 'learning_logs:index' %}">首页</a> - 
+                <a href="{% url 'learning_logs:topics' %}">所有主题</a> - 
+                <a href="{% url 'learning_logs:my_blogs' %}">我的条目</a>                
+            </b></h5>
+        </div>
+
+        <div class="container">
+            <div class="page-header">   
+                {% block header %}
+                {% endblock header %}  
+            </div>
+        
+            {% block content %}
+            {% endblock content %}
+        </dir>
+    </body>
+</html>
+

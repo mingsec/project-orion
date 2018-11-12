@@ -1,0 +1,37 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}  
+    <h3>
+        <b>用户 {{ user.username }} 当前创建了如下条目:</b>
+    </h3>
+{% endblock header %}
+
+{% block content %}
+    {% for test in test_all %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>
+                    <b>{{ test.0.title|linebreaks }}</b>                        
+                </h4>
+                <small>所属科目: {{ test.2 }} - {{ test.1 }} </small>  
+            </div>
+
+            <div class="panel-body">
+                {{ test.0.text|linebreaks }}
+            </div>
+
+            <div class="panel-footer">
+                <small>
+                    创建时间：{{ test.0.date_added|date:'Y-m-d H:i' }}</small>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp
+                    最后编辑：{{ test.0.date_modify|date:'Y-m-d H:i' }}</small>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a href="{% url 'learning_logs:edit_blog' test.2.name test.1.name test.0.name %}">编辑条目</a>
+            </div>
+        </div><!-- panel -->
+    {% empty %}
+        <b>您尚未创建任何条目。</b>
+    {% endfor %}
+
+{% endblock content %}
