@@ -14,6 +14,7 @@ class Topic(models.Model):
         """返回模型的字符串表示"""
         return self.text
 
+
 class Entry(models.Model):
     """用户学习的主题的科目"""
     topic      = models.ForeignKey(Topic, on_delete=models.CASCADE)
@@ -27,6 +28,7 @@ class Entry(models.Model):
     def __str__(self):
         """返回模型的字符串表示"""
         return self.text
+
 
 class Blog(models.Model):
     """用户学习的主题的科目的条目"""

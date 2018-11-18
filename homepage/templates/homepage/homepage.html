@@ -1,7 +1,10 @@
 {% extends "homepage/base.html" %}
 {% load bootstrap3 %}
 
-{% block header%}
+{% block header %}
+{% endblock header %} 
+
+{% block content%}
     <div class='jumbotron'
          onclick="window.open('/learning_logs/','_self')">
         <h2>
@@ -15,4 +18,18 @@
             </i>
         </h4>
     </div>
-{% endblock header%}
+
+    <div class='jumbotron'
+         onclick="window.open('/financial_indicator_library/','_self')">
+        <h2>
+            <b>财务指标库</b>
+        </h2>
+
+        <h4>
+            <i>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                --一个观察企业的窗口。
+            </i>
+        </h4>
+    </div>
+{% endblock content%}

@@ -60,15 +60,21 @@
         </nav>
 
         <div class="container">
-            <dir class="page-header">  
+            <h5><b>
+                <a href="{% url 'financial_indicator_library:index' %}">首页</a> - 
+                           
+            </b></h5>
+        </div>
+
+        <div class="container">
+            <div class="page-header">   
                 {% block header %}
                 {% endblock header %}  
-            </dir>
-            
-            <dir>
-                {% block content %}
-                {% endblock content %}
-            </dir>
+            </div>
+        
+            {% block content %}
+            {% endblock content %}
         </dir>
     </body>
 </html>
+
