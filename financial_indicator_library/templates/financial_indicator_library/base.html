@@ -60,10 +60,13 @@
         </nav>
 
         <div class="container">
-            <h5><b>
-                <a href="{% url 'financial_indicator_library:index' %}">首页</a> - 
-                           
-            </b></h5>
+            <h5>
+                <b>
+                    <a href="{% url 'financial_indicator_library:index' %}">首页</a> - 
+                    <a href="{% url 'financial_indicator_library:indicators' %}">财务指标</a> - 
+                    <a href="{% url 'financial_indicator_library:average' %}">平均水平</a>
+                </b>
+            </h5>
         </div>
 
         <div class="container">
@@ -71,9 +74,11 @@
                 {% block header %}
                 {% endblock header %}  
             </div>
-        
-            {% block content %}
-            {% endblock content %}
+            
+            <div class="page-body">
+                {% block content %}
+                {% endblock content %}
+            </div>
         </dir>
     </body>
 </html>

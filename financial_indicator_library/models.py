@@ -34,7 +34,7 @@ class BusinessStatus(models.Model):
         return self.business_status
 
 
-class  TypeOfIndicator(models.Model):
+class TypeOfIndicator(models.Model):
     """指标类型"""
     type_of_indicators_zh = models.CharField(max_length=20)
     type_of_indicators_en = models.CharField(max_length=40)
@@ -44,7 +44,7 @@ class  TypeOfIndicator(models.Model):
         return self.type_of_indicators_zh
 
 
-class  Indicator(models.Model):
+class Indicator(models.Model):
     """指标库"""
     indicator_type        = models.ForeignKey(TypeOfIndicator, on_delete=models.CASCADE)
     indicator_name_zh     = models.CharField(max_length=50)

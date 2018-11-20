@@ -2,19 +2,15 @@
 {% load bootstrap3 %}
 
 {% block header %}
-    <h4>科目:
-        <a href="{% url 'learning_logs:entries' topic.name %}">
-           {{ topic }}
-        </a> -
-
-        <a href="{% url 'learning_logs:blogs' topic.name entry.name %}">
-           {{ entry }}
-        </a>
-    </h4>
-
-    <h2>
+    <h3>
         <b>编辑条目:</b>
-    </h2>
+    </h3>
+
+    <small>
+        科目:
+        <a href="{% url 'learning_logs:entries' topic.name %}">{{ topic }}</a> -
+        <a href="{% url 'learning_logs:blogs' topic.name entry.name %}">{{ entry }}</a>
+    </small>
 {% endblock header %}
 
 {% block content %}

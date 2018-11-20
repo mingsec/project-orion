@@ -1,0 +1,46 @@
+{% extends "financial_indicator_library/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+    <h3>
+        <b>财务指标</b>
+    </h3>
+        
+    <small>
+        <a href="{% url 'financial_indicator_library:indicators' %}">添加财务指标</a> 
+    </small>
+{% endblock header %}
+
+{% block content %}
+    <table class="table table-hover">
+        <thead>
+            <tr class="info" >
+                <th width="50px"  style="text-align:center;" nowrap >序号</th>
+                <th width="100px" style="text-align:center;" nowrap >指标类型</th>
+                <th width="200px" style="text-align:center;" nowrap >指标名称</th>
+                <th width="80px"  style="text-align:center;" nowrap >计量单位</th>
+                <th               style="text-align:center;" nowrap >指标描述</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for indicator in indicators %}
+                <tr>
+                    <td style="vertical-align: middle" align="center" >{{ indicator.id }}</td>
+                    <td style="vertical-align: middle" >{{ indicator.indicator_type }}</td>
+                    <td style="vertical-align: middle" >{{ indicator.indicator_name_zh }}</td>
+                    <td style="vertical-align: middle" align="center" >{{ indicator.unit_of_measurement }}</td>
+                    <td style="vertical-align: middle" >{{ indicator.indicator_description }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td style="vertical-align: middle" colspan="5" >
+                        <!--第一个单元格与第二个单元格合并，colspan="5"意思是第一个单元格的长度改变成五个单元格的长度，也就是把第一个单元格长度边长五倍，第二个单元格的<td></td>删除。-->
+                        <b>尚未添加任何财务指标。</b>
+                    </td> 
+                </tr>
+            {% endfor %}
+        </tbody>   
+    </table>
+  
+{% endblock content %}
