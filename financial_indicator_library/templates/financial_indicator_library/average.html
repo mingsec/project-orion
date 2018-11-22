@@ -5,58 +5,61 @@
     <h3>
         <b>关键财务指标平均水平</b>
     </h3>
+{% endblock header %}
 
-    <label>企业类型：
-        <select class="selectpicker" title="请选择企业类型" name="type_of_enterprise" >
-            {% for te in te_all %}
-                <option id=te.id value="{{ te.type_of_enterprise }}">
-                    {{ te.type_of_enterprise }}
-                </option>
-            {% endfor %}
-        </select>
-    </label>
+{% block content %}
+    <form class="form-inline" method="POST"> 
+        {% csrf_token %}   
 
-        &nbsp&nbsp
+        <div class="form-group" >
+            <label for="te" class="control-label">企业类型：</label>
+            <select class=" form-control" id="te" name="type_of_enterprise">                
+                {% for te in te_all %}
+                    <option id=te.id value="{{ te.id }}" >
+                        {{ te.type_of_enterprise }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>  
 
-        <label>企业规模：
-            <select name="business_scale">
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+        <div class="form-group" >
+            <label for="bs" >企业规模：</label>
+            <select class="form-control" id="bs" name="business_scale">
                 {% for bs in bs_all %}
-                    <option id=bs.id value="{{ bs.business_scale }}">
+                    <option id=bs.id value="{{ bs.id }}">
                         {{ bs.business_scale }}
                     </option>
                 {% endfor %}
             </select>
-        </label>
+        </div>
 
-        &nbsp&nbsp
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 
-        <label>企业状况：
-            <select name="business_status">
+        <div class="form-group" >
+            <label for="bss" >企业状况：</label>
+            <select class="form-control" id="bss" name="business_status">
                 {% for bss in bss_all %}
-                    <option id=bss.id value="{{ bss.business_status }}">
+                    <option id=bss.id value="{{ bss.id }}">
                         {{ bss.business_status }}
                     </option>
                 {% endfor %}
             </select>
-        </label>
+        </div> 
 
-        &nbsp&nbsp&nbsp&nbsp
+        <input type="submit" name="query" value="查询" >  
+
+    </form>
+
 
     
-    <button name="submit" class="btn btn-primary btn-xs" >查询</button>
-
-
-{% endblock header %}
-
-{% block content %}
     <table class="table table-hover">
         <thead>
             <tr class="info" >
-                <th width="50px"  style="text-align:center;" nowrap >序号</th>
-                <th width="100px" style="text-align:center;" nowrap >指标类型</th>
-                <th width="150px" style="text-align:center;" nowrap >指标名称</th>
-                <th width="80px"  style="text-align:center;" nowrap >计量单位</th>
-                <th style="text-align:center;" nowrap >指标描述</th>
+                <th width="50px"  style="text-align:center;" nowrap >{{ indicator_data.te }}</th>
+                <th width="100px" style="text-align:center;" nowrap >{{ indicator_data.bs }}</th>
+                <th width="150px" style="text-align:center;" nowrap >{{ indicator_data.bss }}</th>
             </tr>
         </thead>
 
@@ -79,5 +82,4 @@
             {% endfor %}
         </tbody>   
     </table>
-  
 {% endblock content %}

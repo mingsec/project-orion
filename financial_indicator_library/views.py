@@ -1,6 +1,7 @@
 from django.shortcuts import render
+from django.http      import HttpResponseRedirect
 from django.urls      import reverse
-from .models          import Indicator, TypeOfEnterprise, BusinessScale, BusinessStatus
+from .models          import Indicator, TypeOfEnterprise, BusinessScale, BusinessStatus, IndicatorData
 
 
 # Create your views here.
@@ -24,7 +25,17 @@ def average(request):
     te_all  = TypeOfEnterprise.objects.all()
     bs_all  = BusinessScale.objects.all()
     bss_all = BusinessStatus.objects.all()
+    
+    indicator_data = IndicatorData()
 
-    context = {"te_all":te_all, "bs_all":bs_all, "bss_all":bss_all}
+    if request.method == "POST":
+        te  = request.POST.get("type_of_enterprise")
+        bs  = request.POST.get("business_scale")
+        bss = request.POST.get("business_status")
+       
+        indicator_data = IndicatorData.objects.get(te=te, bs=bs, bss=bss)
+        print(indicator_data.te)
+
+    context = {"te_all":te_all, "bs_all":bs_all, "bss_all":bss_all, "indicator_data":indicator_data}
 
     return render(request, 'financial_indicator_library/average.html', context)
