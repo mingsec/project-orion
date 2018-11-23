@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http      import HttpResponseRedirect
 from django.urls      import reverse
 from .models          import Indicator, TypeOfEnterprise, BusinessScale, BusinessStatus, IndicatorData
+from .forms           import AverageForm
 
 
 # Create your views here.
@@ -22,20 +23,24 @@ def indicators(request):
 
 def average(request):
     """显示各行业关键财务指标的平均水平"""
-    te_all  = TypeOfEnterprise.objects.all()
-    bs_all  = BusinessScale.objects.all()
-    bss_all = BusinessStatus.objects.all()
-    
     indicator_data = IndicatorData()
 
-    if request.method == "POST":
-        te  = request.POST.get("type_of_enterprise")
-        bs  = request.POST.get("business_scale")
-        bss = request.POST.get("business_status")
-       
-        indicator_data = IndicatorData.objects.get(te=te, bs=bs, bss=bss)
-        print(indicator_data.te)
+    if request.method != 'POST':
+        #当操作为非提交数据时，则创建一个新的表单
+        form = AverageForm()
+    else:
+        #当操作为提交数据时，则对数据进行处理
+        form = AverageForm(request.POST)
 
-    context = {"te_all":te_all, "bs_all":bs_all, "bss_all":bss_all, "indicator_data":indicator_data}
+        if form.is_valid():        
+            #获取post数据all_data['te']
+            all_data = form.clean()
+            te  = all_data['te']
+            bs  = all_data['bs']
+            bss = all_data['bss']
+
+            indicator_data = IndicatorData.objects.get(te=te, bs=bs, bss=bss)
+
+    context = {"form":form, "indicator_data":indicator_data}
 
     return render(request, 'financial_indicator_library/average.html', context)

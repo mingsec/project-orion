@@ -51,6 +51,8 @@ def new_topic(request):
         #当操作为提交数据时，则对数据进行处理
         form = TopicForm(request.POST)
         if form.is_valid():
+            #获取post数据
+            all_data = form.clean()   
             new_topic      = form.save(commit=False)
             new_topic.name = pinyin.get_initials(new_topic.text, splitter='')
             new_topic.save()
