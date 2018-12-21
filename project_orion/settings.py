@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'users',
     'learning_logs',
     'financial_indicator_library',
+    'accounting',
 ]
 
 MIDDLEWARE = [

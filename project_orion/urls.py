@@ -22,4 +22,5 @@ urlpatterns = [
                path('users/', include('users.urls', namespace='users')),
                path('learning_logs/', include('learning_logs.urls', namespace='learning_logs')),
                path('financial_indicator_library/', include('financial_indicator_library.urls', namespace='financial_indicator_library')),
+               path('accounting/', include('accounting.urls', namespace='accounting')),
               ]
