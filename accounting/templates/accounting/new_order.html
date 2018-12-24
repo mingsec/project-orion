@@ -113,40 +113,33 @@
     --> 
 
     <!-- 使用django的字段控件创建表单--> 
-    <form action="{% url 'accounting:new_order' %}"  method="POST" role="form">
+    <form action="{% url 'accounting:new_order' %}" method="POST" role="form" >
         {% csrf_token %}
 
-        <div style="vertical-align: middle" align="center" >
-            {% bootstrap_field form.number_of_purchase_contract layout='horizontal' horizontal_label_class='col-sm-1' horizontal_field_class='col-sm-5' label='订单编号' placeholder='请输入订单编号' %}
+        <div class="col-md-10" style="text-align: right;">
+            {% bootstrap_field form.number_of_purchase_contract layout='horizontal' label='订单编号' placeholder='请输入订单编号' %}
 
-            {% bootstrap_field form.number_of_client layout='horizontal' horizontal_label_class='col-sm-1' horizontal_field_class='col-sm-5' label='客户名称' placeholder='请选择客户' %}
+            {% bootstrap_field form.number_of_client layout='horizontal' label='客户名称' placeholder='请选择客户' %}
 
-            {% bootstrap_field form.product layout='horizontal' horizontal_label_class='col-sm-1' horizontal_field_class='col-sm-5' label='产品名称' placeholder='请选择产品' %}
+            {% bootstrap_field form.product layout='horizontal' label='产品名称' placeholder='请选择产品' %}
 
-            {% bootstrap_field form.date_of_sale layout='horizontal' horizontal_label_class='col-sm-1' horizontal_field_class='col-sm-5' label='销售日期' placeholder='请输入销售日期' %}
+            {% bootstrap_field form.date_of_sale layout='horizontal' label='销售日期' placeholder='请输入销售日期' %}
 
-            {% bootstrap_field form.service_life layout='horizontal' horizontal_label_class='col-sm-1' horizontal_field_class='col-sm-5' label='使用期限' placeholder='请输入使用期限' %}
+            {% bootstrap_field form.service_life layout='horizontal' label='使用期限' placeholder='请输入使用期限' %}
 
-            {% bootstrap_field form.sales_amount layout='horizontal' horizontal_label_class='col-sm-1' horizontal_field_class='col-sm-5' label='销售金额' placeholder='请输入销售金额' %}
+            {% bootstrap_field form.sales_amount layout='horizontal' label='销售金额' placeholder='请输入销售金额' %}
 
-            {% bootstrap_field form.tax_included_or_not layout='horizontal' horizontal_label_class='col-sm-1' horizontal_field_class='col-sm-5' label='是否含税' %}
+            {% bootstrap_field form.tax_included_or_not layout='horizontal' label='是否含税' %}
 
-            {% bootstrap_field form.invoiced_or_not layout='horizontal' horizontal_label_class='col-sm-1' horizontal_field_class='col-sm-5' label='是否开票' %}
+            {% bootstrap_field form.invoiced_or_not layout='horizontal' label='是否开票' %}
 
-            {% bootstrap_field form.number_of_invoiced layout='horizontal' horizontal_label_class='col-sm-1' horizontal_field_class='col-sm-5' label='发票编号' placeholder='请输入发票编号' %}
+            {% bootstrap_field form.number_of_invoiced layout='horizontal' label='发票编号' placeholder='请输入发票编号' %}
 
-            {% bootstrap_field form.closed_or_not layout='horizontal' horizontal_label_class='col-sm-1' horizontal_field_class='col-sm-5' label='是否到期' %}
+            {% bootstrap_field form.closed_or_not layout='horizontal' label='是否到期' %}
         </div>
 
-        <div>&nbsp&nbsp&nbsp&nbsp&nbsp</div>
-
-        <div align="center">
-            {% bootstrap_button "新增客户" button_type="button" button_class="btn-primary" %}
-            &nbsp&nbsp&nbsp&nbsp&nbsp
-            {% bootstrap_button "新增产品" button_type="button" button_class="btn-primary" %}
-            &nbsp&nbsp&nbsp&nbsp&nbsp
+        <div class="col-md-12" style="text-align: center;">
             {% bootstrap_button "添加订单" button_type="submit" button_class="btn-primary" %}
         </div>
-    </form>
-    
+    </form>   
 {% endblock content %}

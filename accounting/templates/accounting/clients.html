@@ -1,0 +1,58 @@
+{% extends "accounting/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+    <h3>
+        <b>客户信息</b>
+    </h3>
+   
+    <small>
+        <a href="{% url 'accounting:new_client' %}">添加客户</a> 
+    </small> 
+
+{% endblock header %}
+
+{% block content %}
+    <DIV  class="panel panel-default">
+        <table class="table table-hover">
+            <thead>
+                <tr class="info" >
+                    <th style="text-align:center;">ID</th>
+                    <th style="text-align:center;">客户编号</th>
+                    <th style="text-align:center;">客户名称</th>
+                    <th style="text-align:center;">纳税人识别号</th>
+                    <th style="text-align:center;">省</th>
+                    <th style="text-align:center;">市</th>
+                    <th style="text-align:center;">详细地址</th>
+                    <th style="text-align:center;">电话号码</th>
+                    <th style="text-align:center;">开户银行</th>
+                    <th style="text-align:center;">银行账号</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for client in clients %}
+                    <tr>
+                        <td style="vertical-align: middle; text-align: center;">{{ client.id }}</td>
+                        <td style="vertical-align: middle; text-align: center;">{{ client.number_of_client }}</td>
+                        <td style="vertical-align: middle; text-align: center;">{{ client.name_of_client }}</td>
+                        <td style="vertical-align: middle; text-align: center;">{{ client.taxpayer_identification_number }}</td>
+                        <td style="vertical-align: middle; text-align: center;">{{ client.province }}</td>
+                        <td style="vertical-align: middle; text-align: center;">{{ client.city }}</td>
+                        <td style="vertical-align: middle; text-align: center;">{{ client.address }}</td>
+                        <td style="vertical-align: middle; text-align: center;">{{ client.telephone }}</td>
+                        <td style="vertical-align: middle; text-align: center;">{{ client.deposit_bank }}</td>
+                        <td style="vertical-align: middle; text-align: center;">{{ client.bank_account }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td style="vertical-align: middle" colspan="11" >
+                            <!--第一个单元格与第二个单元格合并，colspan="11"意思是第一个单元格的长度改变成五个单元格的长度，也就是把第一个单元格长度边长五倍，第二个单元格的<td></td>删除。-->
+                            尚未添加任何客户信息。
+                        </td> 
+                    </tr>
+                {% endfor %}
+            </tbody>   
+        </table>
+    </DIV>
+{% endblock content %}

@@ -1,0 +1,43 @@
+{% extends "accounting/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+    <h3>
+        <b>添加客户信息</b>
+    </h3>
+{% endblock header %}
+
+{% block content %} 
+    <form action="{% url 'accounting:new_client' %}" method="POST" role="form">
+        {% csrf_token %}
+
+        <div style="text-align: right;">
+            {% bootstrap_field form.number_of_client layout='horizontal' label='客户编号' placeholder='请输入客户编号' %}
+
+            {% bootstrap_field form.name_of_client layout='horizontal' label='客户名称' placeholder='请输入客户名称' %}
+
+            {% bootstrap_field form.taxpayer_identification_number layout='horizontal' label='客户纳税人识别号' placeholder='请输入客户纳税人识别号' %}
+
+            {% bootstrap_field form.province layout='horizontal' label='客户所在省份' placeholder='请输入客户所在省份' %}
+
+            {% bootstrap_field form.city layout='horizontal' label='客户所在城市' placeholder='请输入客户所在城市' %}
+
+            {% bootstrap_field form.address layout='horizontal' label='客户详细地址' placeholder='请输入客户的详细地址' %}
+
+            {% bootstrap_field form.telephone layout='horizontal' label='客户电话' placeholder='请输入客户电话' %}
+
+            {% bootstrap_field form.deposit_bank layout='horizontal' label='开户银行' placeholder='请输入客户的开户银行' %}
+
+            {% bootstrap_field form.bank_account layout='horizontal' label='银行账户' placeholder='请输入客户的银行开户账号' %}
+        </div>
+
+        <p><p></p>   </p>
+
+        <div style="text-align: center;">
+            {% bootstrap_button "重新填写" button_type="reset" button_class="btn-primary" %}
+
+            {% bootstrap_button "添加客户" button_type="submit" button_class="btn-primary" %}
+        </div>
+    </form>
+    
+{% endblock content %}

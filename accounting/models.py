@@ -20,3 +20,20 @@ class Order(models.Model):
         """返回销售订单编号"""
         return self.number_of_purchase_contract
 
+
+class Client(models.Model):
+    """客户数据"""
+    number_of_client               = models.CharField(max_length=8 )
+    name_of_client                 = models.CharField(max_length=50)
+    taxpayer_identification_number = models.CharField(max_length=18)
+    province                       = models.CharField(max_length=10)
+    city                           = models.CharField(max_length=10)
+    address                        = models.CharField(max_length=60)
+    telephone                      = models.CharField(max_length=15)
+    deposit_bank                   = models.CharField(max_length=50)
+    bank_account                   = models.CharField(max_length=20)
+
+    def __str__(self):
+        """返回客户名称"""
+        return self.name_of_client
+

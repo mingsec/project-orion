@@ -1,20 +1,19 @@
 # -*- coding: utf-8 -*-
 # @Author: ZhuZefeng
 # @Date:   2018-12-21 15:22:57
-# @Last Modified by:   ZhuZefeng
-# @Last Modified time: 2018-12-22 17:23:21
+# @Last Modified by:   mingsec
+# @Last Modified time: 2018-12-24 19:54:24
 
 
 from django       import forms
 from django.forms import widgets
-from .models      import Order
+from .models      import Order, Client
 
 class OrderForm(forms.ModelForm):
-    """用于创建销售订单的表单"""
-    
+    """用于创建销售订单的表单"""    
     class Meta:
         model  = Order
-        fields = ['number_of_purchase_contract', 
+        fields = [  'number_of_purchase_contract', 
                     'number_of_client', 
                     'product', 
                     'date_of_sale', 
@@ -37,3 +36,18 @@ class OrderForm(forms.ModelForm):
     number_of_invoiced          = forms.CharField(label='发票编号')
     closed_or_not               = forms.IntegerField(label='是否到期', widget=forms.Select(choices=(('0','未到期'),('1','已到期'))))
     '''
+
+
+class ClientForm(forms.ModelForm):
+    """用于创建添加客户的表单"""    
+    class Meta:
+        model  = Client
+        fields = [  'number_of_client',
+                    'name_of_client',
+                    'taxpayer_identification_number',
+                    'province',
+                    'city',
+                    'address',
+                    'telephone',
+                    'deposit_bank',
+                    'bank_account',]
