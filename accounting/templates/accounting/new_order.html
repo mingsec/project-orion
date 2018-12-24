@@ -8,113 +8,145 @@
 {% endblock header %}
 
 {% block content %}
-    <div > 
-        <!--注释掉前端创建表单
-        <form action="{% url 'accounting:new_order' %}"  method="POST" class="form-horizontal" role="form" >
-            {% csrf_token %}
+    <!-- 使用bootstrap3创建表单
+    <form action="{% url 'accounting:new_order' %}"  method="POST" class="form-horizontal" role="form" >
+        {% csrf_token %}
 
-            <div class="form-group">
-                <label for="number_of_purchase_contract" class="col-sm-2 control-label">订单编号</label>
-                <div class="col-sm-5">
-                    <input type="text" class="form-control" name="number_of_purchase_contract" placeholder="请输入订单编号">
-                </div>
+        <div class="form-group">
+            <label for="number_of_purchase_contract" class="col-sm-2 control-label">订单编号</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="number_of_purchase_contract" placeholder="请输入订单编号">
             </div>
+        </div>
 
-            <div class="form-group">
-                <label for="number_of_client" class="col-sm-2 control-label">客户名称</label>
-                <div class="col-sm-5">
-                    <input type="text" class="form-control" name="number_of_client" placeholder="请选择客户">
-                </div>
+        <div class="form-group">
+            <label for="number_of_client" class="col-sm-2 control-label">客户名称</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="number_of_client" placeholder="请选择客户">
             </div>
+        </div>
 
-            <div class="form-group">
-                <label for="product" class="col-sm-2 control-label">产品名称</label>
-                <div class="col-sm-5">
-                    <input type="text" class="form-control" name="product" placeholder="请选择产品">
-                </div>
+        <div class="form-group">
+            <label for="product" class="col-sm-2 control-label">产品名称</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="product" placeholder="请选择产品">
             </div>
+        </div>
 
-            <div class="form-group">
-                <label for="date_of_sale" class="col-sm-2 control-label">销售日期</label>
-                <div class="col-sm-5">
-                    <input type="text" class="form-control" name="date_of_sale" placeholder="请输入销售日期">
-                </div>
+        <div class="form-group">
+            <label for="date_of_sale" class="col-sm-2 control-label">销售日期</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="date_of_sale" placeholder="请输入销售日期">
             </div>
+        </div>
 
-            <div class="form-group">
-                <label for="service_life" class="col-sm-2 control-label">使用期限</label>
-                <div class="col-sm-5">
-                    <input type="text" class="form-control" name="service_life" placeholder="请输入使用期限">
-                </div>
+        <div class="form-group">
+            <label for="service_life" class="col-sm-2 control-label">使用期限</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="service_life" placeholder="请输入使用期限">
             </div>
+        </div>
 
-            <div class="form-group">
-                <label for="sales_amount" class="col-sm-2 control-label">销售金额</label>
-                <div class="col-sm-5">
-                    <input type="text" class="form-control" name="sales_amount" placeholder="请输入销售金额">
-                </div>
+        <div class="form-group">
+            <label for="sales_amount" class="col-sm-2 control-label">销售金额</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="sales_amount" placeholder="请输入销售金额">
             </div>
+        </div>
 
-            <div class="form-group">
-                <label for="tax_included_or_not" class="col-sm-2 control-label">是否含税</label>
-                <div class="col-sm-5">
-                    <select class="form-control" name="tax_included_or_not" value="0">
-                        <option value="0">不含增值税</option>
-                        <option value="1">含增值税</option>
-                    </select>
-                </div>
+        <div class="form-group">
+            <label for="tax_included_or_not" class="col-sm-2 control-label">是否含税</label>
+            <div class="col-sm-5">
+                <select class="form-control" name="tax_included_or_not" value="0">
+                    <option value="0">不含增值税</option>
+                    <option value="1">含增值税</option>
+                </select>
             </div>
+        </div>
 
-            <div class="form-group">
-                <label for="invoiced_or_not" class="col-sm-2 control-label">是否开票</label>
-                <div class="col-sm-5">
-                    <select class="form-control" name="invoiced_or_not" value="0">
-                        <option value="0">未开发票</option>
-                        <option value="1">已开发票</option>
-                    </select>
-                </div>
+        <div class="form-group">
+            <label for="invoiced_or_not" class="col-sm-2 control-label">是否开票</label>
+            <div class="col-sm-5">
+                <select class="form-control" name="invoiced_or_not" value="0">
+                    <option value="0">未开发票</option>
+                    <option value="1">已开发票</option>
+                </select>
             </div>
+        </div>
 
-            <div class="form-group">
-                <label for="number_of_invoiced" class="col-sm-2 control-label">发票编号</label>
-                <div class="col-sm-5">
-                    <input type="text" class="form-control" name="number_of_invoiced" placeholder="请输入发票编号">
-                </div>
+        <div class="form-group">
+            <label for="number_of_invoiced" class="col-sm-2 control-label">发票编号</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="number_of_invoiced" placeholder="请输入发票编号">
             </div>
+        </div>
 
-            <div class="form-group">
-                <label for="closed_or_not" class="col-sm-2 control-label">是否到期</label>
-                <div class="col-sm-5">
-                    <select class="form-control" name="closed_or_not" value="0">
-                        <option value="0">未到期</option>
-                        <option value="1">已到期</option>
-                    </select>
-                </div>
+        <div class="form-group">
+            <label for="closed_or_not" class="col-sm-2 control-label">是否到期</label>
+            <div class="col-sm-5">
+                <select class="form-control" name="closed_or_not" value="0">
+                    <option value="0">未到期</option>
+                    <option value="1">已到期</option>
+                </select>
             </div>
+        </div>
 
-            {% buttons %}
-                <button name="submit" class="btn btn-primary">添加</button> 
-            {% endbuttons %}
-        </form>
-    </div>
-
-    {% bootstrap_form form layout="horizontal" horizontal_label_class="col-sm-2" horizontal_field_class="col-sm-5" %} 
+        {% buttons %}
+            <button name="submit" class="btn btn-primary">添加</button> 
+        {% endbuttons %}
+    </form>
     -->
+    
 
-    <div > 
-        <form action="{% url 'accounting:new_order' %}"  method="POST" class="form-horizontal" role="form" >
-            {% csrf_token %}
-            
-             
+    <!-- 使用django的表单控件创建表单
+    <form action="{% url 'accounting:new_order' %}"  method="POST" role="form" >
+        {% csrf_token %}
+    
+        {% bootstrap_form form layout='horizontal' horizontal_label_class='col-md-1' horizontal_field_class='col-md-5' %}
 
-            <div class="form-group">
-                
-            </div>
+        <div class="form-inline" style="vertical-align: middle" align="center">
+            {% bootstrap_button "新增客户" button_type="button" button_class="btn-primary" %}
+            {% bootstrap_button "新增产品" button_type="button" button_class="btn-primary" %}
+            {% bootstrap_button "添加订单" button_type="submit" button_class="btn-primary" %}
+        </div>  
+    </form>
+    --> 
 
-            <button type="submit" class="btn btn-primary">
-                添加
-            </button> 
-        </form>
-    </div>
+    <!-- 使用django的字段控件创建表单--> 
+    <form action="{% url 'accounting:new_order' %}"  method="POST" role="form">
+        {% csrf_token %}
 
+        <div style="vertical-align: middle" align="center" >
+            {% bootstrap_field form.number_of_purchase_contract layout='horizontal' horizontal_label_class='col-sm-1' horizontal_field_class='col-sm-5' label='订单编号' placeholder='请输入订单编号' %}
+
+            {% bootstrap_field form.number_of_client layout='horizontal' horizontal_label_class='col-sm-1' horizontal_field_class='col-sm-5' label='客户名称' placeholder='请选择客户' %}
+
+            {% bootstrap_field form.product layout='horizontal' horizontal_label_class='col-sm-1' horizontal_field_class='col-sm-5' label='产品名称' placeholder='请选择产品' %}
+
+            {% bootstrap_field form.date_of_sale layout='horizontal' horizontal_label_class='col-sm-1' horizontal_field_class='col-sm-5' label='销售日期' placeholder='请输入销售日期' %}
+
+            {% bootstrap_field form.service_life layout='horizontal' horizontal_label_class='col-sm-1' horizontal_field_class='col-sm-5' label='使用期限' placeholder='请输入使用期限' %}
+
+            {% bootstrap_field form.sales_amount layout='horizontal' horizontal_label_class='col-sm-1' horizontal_field_class='col-sm-5' label='销售金额' placeholder='请输入销售金额' %}
+
+            {% bootstrap_field form.tax_included_or_not layout='horizontal' horizontal_label_class='col-sm-1' horizontal_field_class='col-sm-5' label='是否含税' %}
+
+            {% bootstrap_field form.invoiced_or_not layout='horizontal' horizontal_label_class='col-sm-1' horizontal_field_class='col-sm-5' label='是否开票' %}
+
+            {% bootstrap_field form.number_of_invoiced layout='horizontal' horizontal_label_class='col-sm-1' horizontal_field_class='col-sm-5' label='发票编号' placeholder='请输入发票编号' %}
+
+            {% bootstrap_field form.closed_or_not layout='horizontal' horizontal_label_class='col-sm-1' horizontal_field_class='col-sm-5' label='是否到期' %}
+        </div>
+
+        <div>&nbsp&nbsp&nbsp&nbsp&nbsp</div>
+
+        <div align="center">
+            {% bootstrap_button "新增客户" button_type="button" button_class="btn-primary" %}
+            &nbsp&nbsp&nbsp&nbsp&nbsp
+            {% bootstrap_button "新增产品" button_type="button" button_class="btn-primary" %}
+            &nbsp&nbsp&nbsp&nbsp&nbsp
+            {% bootstrap_button "添加订单" button_type="submit" button_class="btn-primary" %}
+        </div>
+    </form>
+    
 {% endblock content %}

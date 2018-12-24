@@ -40,15 +40,15 @@
                         <td style="vertical-align: middle" align="center" >{{ order.date_of_sale }}</td>
                         <td style="vertical-align: middle" align="center" >{{ order.service_life }}</td>
                         <td style="vertical-align: middle" align="center" >{{ order.sales_amount }}</td>
-                        <td style="vertical-align: middle" align="center" >{{ order.tax_included_or_not }}</td>
-                        <td style="vertical-align: middle" align="center" >{{ order.invoiced_or_not }}</td>
+                        <td style="vertical-align: middle" align="center" >{% if order.tax_included_or_not %}含增值税{% else %}不含增值税{% endif %}</td>
+                        <td style="vertical-align: middle" align="center" >{% if order.invoiced_or_not %}已开票{% else %}未开票{% endif %}</td>
                         <td style="vertical-align: middle" align="center" >{{ order.number_of_invoiced }}</td>
-                        <td style="vertical-align: middle" align="center" >{{ order.closed_or_not }}</td>
+                        <td style="vertical-align: middle" align="center" >{% if order.closed_or_not %}已到期{% else %}未到期{% endif %}</td>
                     </tr>
                 {% empty %}
                     <tr>
                         <td style="vertical-align: middle" colspan="11" >
-                        <!--第一个单元格与第二个单元格合并，colspan="11"意思是第一个单元格的长度改变成五个单元格的长度，也就是把第一个单元格长度边长五倍，第二个单元格的<td></td>删除。-->
+                            <!--第一个单元格与第二个单元格合并，colspan="11"意思是第一个单元格的长度改变成五个单元格的长度，也就是把第一个单元格长度边长五倍，第二个单元格的<td></td>删除。-->
                             <b>尚未添加任何销售订单。</b>
                         </td> 
                     </tr>

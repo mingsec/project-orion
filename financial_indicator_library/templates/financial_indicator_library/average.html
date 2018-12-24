@@ -8,90 +8,97 @@
 {% endblock header %}
 
 {% block content %}
-
-    <div > 
-        <form action="{% url 'financial_indicator_library:average' %}"  method="POST" class="form-inline" role="form" >
-            {% csrf_token %}
+    <form action="{% url 'financial_indicator_library:average' %}"  method="POST" role="form">
+        {% csrf_token %}
             
-            {% bootstrap_form form %}  
+        {% bootstrap_field form.te layout='horizontal' horizontal_label_class='col-sm-1' horizontal_field_class='col-sm-3' %}
 
-            <button type="submit" class="btn btn-primary">
-                查询
-            </button> 
-        </form>
-    </div>
+        {% bootstrap_field form.bs layout='horizontal' horizontal_label_class='col-sm-1' horizontal_field_class='col-sm-2' %}
+
+        {% bootstrap_field form.bss layout='horizontal' horizontal_label_class='col-sm-1' horizontal_field_class='col-sm-2' %}
+
+        {% bootstrap_button "查询" button_type="submit" button_class="btn-primary" %} 
+    </form>
 
     <p></p>
 
-    <ul id="myTab" class="nav nav-tabs">
-        <li class="active"><a href="#profitability_indicators" data-toggle="tab">盈利能力指标</a></li>
-        <li><a href="#asset_quality_indicators" tabindex="-1" data-toggle="tab">资产质量指标</a></li>
-        <li><a href="#debt_risk_indicators" data-toggle="tab">债务风险指标</a></li>
-        <li><a href="#business_growth_indicator" data-toggle="tab">经营增长指标</a></li>
-        <li class="dropdown">
-            <a href="#" id="other_indicators" class="dropdown-toggle" data-toggle="dropdown">其他指标<b class="caret"></b></a>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="other_indicators">
-                <li><a href="#other_indicator_one" tabindex="-1" data-toggle="tab">其他指标1</a></li>
-                <li><a href="#other_indicator_two" tabindex="-1" data-toggle="tab">其他指标2</a></li>
-            </ul>
-        </li>
-    </ul>
-    <div id="myTabContent" class="tab-content">
-        <div class="tab-pane in active" id="profitability_indicators" width="250px">
-            <table class="table table-hover table-condensed" style="table-layout: fixed;">
-                <tr class="success"><th width="200px">指标名称</th> <th width="20px" style="text-align:center;">平均值</th></tr>
-                <tr><td>净资产收益率</td>                           <td style="text-align:center;">{{ indicator_data.roe  }}</td></tr>
-                <tr><td>总资产报酬率</td>                           <td style="text-align:center;">{{ indicator_data.rota }}</td></tr>
-                <tr><td>销售（营业）利润率</td>                     <td style="text-align:center;">{{ indicator_data.ros  }}</td></tr>
-                <tr><td>盈余现金保障倍数</td>                       <td style="text-align:center;">{{ indicator_data.scsm }}</td></tr>
-                <tr><td>成本费用利润率</td>                         <td style="text-align:center;">{{ indicator_data.rpce }}</td></tr>
-                <tr><td>资本收益率</td>                             <td style="text-align:center;">{{ indicator_data.roc  }}</td></tr>
-            </table>
-        </div>
-        <div class="tab-pane" id="asset_quality_indicators" width="250px">
-            <table class="table table-hover table-condensed" style="table-layout: fixed;">
-                <tr class="success"><th width="200px">指标名称</th> <th width="20px" style="text-align:center;">平均值</th></tr>
-                <tr><td>总资产周转率</td>                           <td style="text-align:center;">{{ indicator_data.tat }}</td></tr>
-                <tr><td>应收账款周转率</td>                         <td style="text-align:center;">{{ indicator_data.art }}</td></tr>
-                <tr><td>不良资产比率</td>                           <td style="text-align:center;">{{ indicator_data.bar }}</td></tr>
-                <tr><td>流动资产周转率</td>                         <td style="text-align:center;">{{ indicator_data.cat }}</td></tr>
-                <tr><td>资产现金回收率</td>                         <td style="text-align:center;">{{ indicator_data.cra }}</td></tr>
-            </table>
-        </div>
-        <div class="tab-pane" id="debt_risk_indicators" width="250px">
-            <table class="table table-hover table-condensed" style="table-layout: fixed;">
-                <tr class="success"><th width="200px">指标名称</th> <th width="20px" style="text-align:center;">平均值</th></tr>
-                <tr><td>资产负债率</td>                             <td style="text-align:center;">{{ indicator_data.alr }}</td></tr>
-                <tr><td>已获利息倍数</td>                           <td style="text-align:center;">{{ indicator_data.ntie }}</td></tr>
-                <tr><td>速动比率</td>                               <td style="text-align:center;">{{ indicator_data.qr }}</td></tr>
-                <tr><td>现金流动负债比率</td>                       <td style="text-align:center;">{{ indicator_data.cfcr }}</td></tr>
-                <tr><td>带息负债比率</td>                           <td style="text-align:center;">{{ indicator_data.ibdr}}</td></tr>
-                <tr><td>或有负债比率</td>                           <td style="text-align:center;">{{ indicator_data.clr }}</td></tr>
-            </table>
-        </div>
-        <div class="tab-pane" id="business_growth_indicator">
-            <table class="table table-hover table-condensed" style="table-layout: fixed;">
-                <tr class="success"><th width="200px">指标名称</th> <th width="20px" style="text-align:center;">平均值</th></tr>
-                <tr><td>销售（营业）增长率</td>                     <td style="text-align:center;">{{ indicator_data.sgr }}</td></tr>
-                <tr><td>资本保值增值率</td>                         <td style="text-align:center;">{{ indicator_data.cpar }}</td></tr>
-                <tr><td>销售（营业）利润增长率</td>                 <td style="text-align:center;">{{ indicator_data.opgr }}</td></tr>
-                <tr><td>总资产增长率</td>                           <td style="text-align:center;">{{ indicator_data.tagr }}</td></tr>
-                <tr><td>技术投入比率</td>                           <td style="text-align:center;">{{ indicator_data.tir}}</td></tr>
-            </table>
-        </div>
-        <div class="tab-pane" id="other_indicator_one"  width="250px">
-            <table class="table table-hover table-condensed"  style="table-layout: fixed;">
-                <tr class="success"><th width="200px">指标名称</th> <th width="20px" style="text-align:center;">平均值</th></tr>
-                <tr><td>存货周转率</td>                             <td style="text-align:center;">{{ indicator_data.it }}</td></tr>
-                <tr><td>两金占流动资产比重</td>                     <td style="text-align:center;">{{ indicator_data.tgapca }}</td></tr>
-                <tr><td>成本费用占营业收入比重</td>                 <td style="text-align:center;">{{ indicator_data.cepoi }}</td></tr>
-                <tr><td>经济增加值率</td>                           <td style="text-align:center;">{{ indicator_data.evar }}</td></tr>
-                <tr><td>EBITDA率</td>                               <td style="text-align:center;">{{ indicator_data.ebitdar }}</td></tr>
-                <tr><td>资本积累率</td>                             <td style="text-align:center;">{{ indicator_data.car }}</td></tr>
-            </table>
-        </div>
-        <div class="tab-pane" id="other_indicator_two">
-            <p>其他指标二</p>
-        </div>
-    </div> 
+    <div>
+        <ul id="myTab" class="nav nav-tabs">
+            <li class="active"><a href="#profitability_indicators" data-toggle="tab">盈利能力指标</a></li>
+            <li><a href="#asset_quality_indicators" tabindex="-1" data-toggle="tab">资产质量指标</a></li>
+            <li><a href="#debt_risk_indicators" data-toggle="tab">债务风险指标</a></li>
+            <li><a href="#business_growth_indicator" data-toggle="tab">经营增长指标</a></li>
+            <li class="dropdown">
+                <a href="#" id="other_indicators" class="dropdown-toggle" data-toggle="dropdown">其他指标<b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="other_indicators">
+                    <li><a href="#other_indicator_one" tabindex="-1" data-toggle="tab">其他指标1</a></li>
+                    <li><a href="#other_indicator_two" tabindex="-1" data-toggle="tab">其他指标2</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane in active" id="profitability_indicators" width="250px">
+                <table class="table table-hover" style="table-layout: fixed;">
+                    <tr class="success"><th>指标名称</th><th style="text-align:center;">平均值</th></tr>
+                    <tr><td>净资产收益率</td>      <td style="text-align:center;">{{ indicator_data.roe  }}</td></tr>
+                    <tr><td>总资产报酬率</td>      <td style="text-align:center;">{{ indicator_data.rota }}</td></tr>
+                    <tr><td>销售（营业）利润率</td><td style="text-align:center;">{{ indicator_data.ros  }}</td></tr>
+                    <tr><td>盈余现金保障倍数</td>  <td style="text-align:center;">{{ indicator_data.scsm }}</td></tr>
+                    <tr><td>成本费用利润率</td>    <td style="text-align:center;">{{ indicator_data.rpce }}</td></tr>
+                    <tr><td>资本收益率</td>        <td style="text-align:center;">{{ indicator_data.roc  }}</td></tr>
+                </table>
+            </div>
+
+            <div class="tab-pane" id="asset_quality_indicators" width="250px">
+                <table class="table table-hover" style="table-layout: fixed;">
+                    <tr class="success"><th >指标名称</th> <th style="text-align:center;">平均值</th></tr>
+                    <tr><td>总资产周转率</td>      <td style="text-align:center;">{{ indicator_data.tat }}</td></tr>
+                    <tr><td>应收账款周转率</td>    <td style="text-align:center;">{{ indicator_data.art }}</td></tr>
+                    <tr><td>不良资产比率</td>      <td style="text-align:center;">{{ indicator_data.bar }}</td></tr>
+                    <tr><td>流动资产周转率</td>    <td style="text-align:center;">{{ indicator_data.cat }}</td></tr>
+                    <tr><td>资产现金回收率</td>    <td style="text-align:center;">{{ indicator_data.cra }}</td></tr>
+                </table>
+            </div>
+
+            <div class="tab-pane" id="debt_risk_indicators" width="250px">
+                <table class="table table-hover" style="table-layout: fixed;">
+                    <tr class="success"><th >指标名称</th> <th style="text-align:center;">平均值</th></tr>
+                    <tr><td>资产负债率</td>        <td style="text-align:center;">{{ indicator_data.alr  }}</td></tr>
+                    <tr><td>已获利息倍数</td>      <td style="text-align:center;">{{ indicator_data.ntie }}</td></tr>
+                    <tr><td>速动比率</td>          <td style="text-align:center;">{{ indicator_data.qr   }}</td></tr>
+                    <tr><td>现金流动负债比率</td>  <td style="text-align:center;">{{ indicator_data.cfcr }}</td></tr>
+                    <tr><td>带息负债比率</td>      <td style="text-align:center;">{{ indicator_data.ibdr }}</td></tr>
+                    <tr><td>或有负债比率</td>      <td style="text-align:center;">{{ indicator_data.clr  }}</td></tr>
+                </table>
+            </div>
+
+            <div class="tab-pane" id="business_growth_indicator" width="250px">
+                <table class="table table-hover" style="table-layout: fixed;">
+                    <tr class="success"><th>指标名称</th> <th style="text-align:center;">平均值</th></tr>
+                    <tr><td>销售增长率</td>     <td style="text-align:center;">{{ indicator_data.sgr  }}</td></tr>
+                    <tr><td>资本保值增值率</td> <td style="text-align:center;">{{ indicator_data.cpar }}</td></tr>
+                    <tr><td>营业利润增长率</td> <td style="text-align:center;">{{ indicator_data.opgr }}</td></tr>
+                    <tr><td>总资产增长率</td>   <td style="text-align:center;">{{ indicator_data.tagr }}</td></tr>
+                    <tr><td>技术投入比率</td>   <td style="text-align:center;">{{ indicator_data.tir  }}</td></tr>
+                </table>
+            </div>
+
+            <div class="tab-pane" id="other_indicator_one"  width="250px">
+                <table class="table table-hover"  style="table-layout: fixed;">
+                    <tr class="success"><th >指标名称</th> <th style="text-align:center;">平均值</th></tr>
+                    <tr><td>存货周转率</td>     <td style="text-align:center;">{{ indicator_data.it }}</td></tr>
+                    <tr><td>两金占流动资产比重</td><td style="text-align:center;">{{ indicator_data.tgapca }}</td></tr>
+                    <tr><td>成本费用占营业收入比重</td><td style="text-align:center;">{{ indicator_data.cepoi }}</td></tr>
+                    <tr><td>经济增加值率</td>   <td style="text-align:center;">{{ indicator_data.evar }}</td></tr>
+                    <tr><td>EBITDA率</td>       <td style="text-align:center;">{{ indicator_data.ebitdar }}</td></tr>
+                    <tr><td>资本积累率</td>     <td style="text-align:center;">{{ indicator_data.car }}</td></tr>
+                </table>
+            </div>
+
+            <div class="tab-pane" id="other_indicator_two">
+                <p>其他指标二</p>
+            </div>
+        </div> 
+    </div>
 {% endblock content %}
