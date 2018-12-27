@@ -11,7 +11,7 @@
     <form action="{% url 'accounting:new_client' %}" method="POST" role="form">
         {% csrf_token %}
 
-        <div style="text-align: right;">
+        <div class="col-md-10" style="text-align: right;">
             {% bootstrap_field form.number_of_client layout='horizontal' label='客户编号' placeholder='请输入客户编号' %}
 
             {% bootstrap_field form.name_of_client layout='horizontal' label='客户名称' placeholder='请输入客户名称' %}
@@ -31,9 +31,7 @@
             {% bootstrap_field form.bank_account layout='horizontal' label='银行账户' placeholder='请输入客户的银行开户账号' %}
         </div>
 
-        <p><p></p>   </p>
-
-        <div style="text-align: center;">
+        <div class="col-md-12" style="text-align: center;">
             {% bootstrap_button "重新填写" button_type="reset" button_class="btn-primary" %}
 
             {% bootstrap_button "添加客户" button_type="submit" button_class="btn-primary" %}

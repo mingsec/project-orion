@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: ZhuZefeng
 # @Date:   2018-12-21 15:22:57
-# @Last Modified by:   mingsec
-# @Last Modified time: 2018-12-24 19:54:24
+# @Last Modified by:   ZhuZefeng
+# @Last Modified time: 2018-12-27 12:57:58
 
 
 from django       import forms
@@ -51,3 +51,16 @@ class ClientForm(forms.ModelForm):
                     'telephone',
                     'deposit_bank',
                     'bank_account',]
+
+'''
+class ProductForm(forms.ModelForm):
+    """用于创建添加产品的表单"""    
+    class Meta:
+        model  = Client
+        fields = [  'number_of_product',
+                    'name_of_product',
+                    'service_life',
+                    'price',
+                    'value_added_tax_rate',
+                    'VAT_inclusive',]
+'''

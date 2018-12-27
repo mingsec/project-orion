@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: ZhuZefeng
 # @Date:   2018-12-20 17:56:56
-# @Last Modified by:   mingsec
-# @Last Modified time: 2018-12-24 18:20:16
+# @Last Modified by:   ZhuZefeng
+# @Last Modified time: 2018-12-27 11:46:35
 
 
 """
@@ -29,5 +29,11 @@ urlpatterns = [
 
                #新增客户的页面
                path('new_client', views.new_client, name='new_client'),
+
+               #显示所有产品信息的页面
+               path('products', views.products, name='products'),
+
+               #新增产品的页面
+               #path('new_product', views. new_product, name=' new_product'),
                
               ]

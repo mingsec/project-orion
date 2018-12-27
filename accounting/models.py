@@ -37,3 +37,25 @@ class Client(models.Model):
         """返回客户名称"""
         return self.name_of_client
 
+
+class Product(models.Model):
+    """产品信息"""
+    number_of_product    = models.CharField(max_length=4 )
+    name_of_product      = models.CharField(max_length=20)
+    value_added_tax_rate = models.CharField(max_length=5 )
+
+    def __str__(self):
+        """返回产品名称"""
+        return self.name_of_product
+
+
+class Price(models.Model):
+    """价格信息"""
+    product      = models.ForeignKey(Product, on_delete=models.CASCADE)
+    service_life = models.IntegerField(choices=((30,'30天'), (60,'60天'), (180,'180天'), (360,'360天'), (720,'720天')))
+    price        = models.CharField(max_length=20)
+
+    def __str__(self):
+        """返回产品名称"""
+        return self.price
+
