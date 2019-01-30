@@ -1,0 +1,35 @@
+{% extends "accounting/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+    <h3>
+        <b>添加产品信息</b>
+    </h3>
+{% endblock header %}
+
+{% block content %} 
+    <form action="{% url 'accounting:new_product' %}" method="POST" role="form">
+        {% csrf_token %}
+
+        <div class="col-md-10" style="text-align: right;">
+            {% bootstrap_field form.number_of_product layout='horizontal' label='产品编号' placeholder='请输入产品编号' %}
+
+            {% bootstrap_field form.name_of_product layout='horizontal' label='产品名称' placeholder='请输入产品名称' %}
+
+            {% bootstrap_field form.service_life layout='horizontal' label='使用期限' placeholder='请输入使用期限' %}
+
+            {% bootstrap_field form.price layout='horizontal' label='客户所在省份' placeholder='请输入客户所在省份' %}
+
+            {% bootstrap_field form.value_added_tax_rate layout='horizontal' label='客户所在城市' placeholder='请输入客户所在城市' %}
+
+            {% bootstrap_field form.VAT_inclusive layout='horizontal' label='客户详细地址' placeholder='请输入客户的详细地址' %}
+        </div>
+
+        <div class="col-md-12" style="text-align: center;">
+            {% bootstrap_button "重新填写" button_type="reset" button_class="btn-primary" %}
+
+            {% bootstrap_button "添加客户" button_type="submit" button_class="btn-primary" %}
+        </div>
+    </form>
+    
+{% endblock content %}

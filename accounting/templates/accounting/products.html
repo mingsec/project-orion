@@ -1,0 +1,56 @@
+{% extends "accounting/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+    <h3>
+        <b>产品信息</b>
+    </h3>
+   
+     
+
+{% endblock header %}
+
+{% block content %}
+    <DIV  class="panel panel-default">
+        <table class="table table-hover">
+            <thead>
+                <tr class="info" >
+                    <th style="text-align:center;">产品编号</th>
+                    <th style="text-align:center;">产品名称</th>
+                    <th style="text-align:center;">使用期限</th>
+                    <th style="text-align:center;">价    格</th>
+                    <th style="text-align:center;">适用增值税税率</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for pi in product_information %}
+                    {% for price in pi.1 %}
+                        <tr>
+                            <td style="vertical-align: middle; text-align: center;">{{ pi.0.number_of_product }}</td>
+                            <td style="vertical-align: middle; text-align: center;">{{ pi.0.name_of_product }}</td>
+                            <td style="vertical-align: middle; text-align: center;">{{ price.service_life }}</td>
+                            <td style="vertical-align: middle; text-align: center;">{{ price.price }}</td>
+                            <td style="vertical-align: middle; text-align: center;">{{ pi.0.value_added_tax_rate }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td style="vertical-align: middle; text-align: center;">{{ pi.0.number_of_product }}</td>
+                            <td style="vertical-align: middle; text-align: center;">{{ pi.0.name_of_product }}</td>
+                            <td style="vertical-align: middle; text-align: center;"> - </td>
+                            <td style="vertical-align: middle; text-align: center;"> - </td>
+                            <td style="vertical-align: middle; text-align: center;">{{ pi.0.value_added_tax_rate }}</td>
+                        </tr>
+                    {% endfor %}
+                {% empty %}
+                    <tr>
+                        <td style="vertical-align: middle" colspan="7" >
+                            <!--第一个单元格与第二个单元格合并，colspan="7"意思是第一个单元格的长度改变成五个单元格的长度，也就是把第一个单元格长度边长五倍，第二个单元格的<td></td>删除。-->
+                            尚未添加任何产品信息。
+                        </td> 
+                    </tr>
+                {% endfor %}
+            </tbody>   
+        </table>
+    </DIV>
+{% endblock content %}
